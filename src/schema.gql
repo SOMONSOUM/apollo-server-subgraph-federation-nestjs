@@ -1,0 +1,22 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Query {
+  findUserById(id: Int!): Int!
+  findAllTests: [String!]!
+  findTestById(id: Int!): String!
+}
+
+type Mutation {
+  createTest(input: CreateTestInput!): String!
+  updateTest(input: UpdateTestInput!): Boolean!
+}
+
+input CreateTestInput {
+  message: String!
+}
+
+input UpdateTestInput {
+  id: Int!
+}
