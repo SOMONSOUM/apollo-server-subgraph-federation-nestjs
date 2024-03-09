@@ -3,6 +3,7 @@
 # ------------------------------------------------------
 
 type Query {
+  health: String!
   findUserById(id: Int!): Int!
   findAllTests: [String!]!
   findTestById(id: Int!): String!
