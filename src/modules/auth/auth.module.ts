@@ -2,17 +2,24 @@ import { Module } from '@nestjs/common';
 import { AuthResolver } from './auth.resolver';
 import { AuthService } from './auth.service';
 import { UserService } from '../users/users.service';
-import { JwtModule } from '@nestjs/jwt';
-import { JwtStrategy } from './guards/jwt.strategy';
+import { JwtService } from '@nestjs/jwt';
+import { HashingService } from 'src/common/service/hashing.service';
+import { BcryptService } from 'src/common/service/bcrypt.service';
+import { TokenService } from 'src/common/service/token.service';
 
 @Module({
-  providers: [AuthResolver, AuthService, UserService, JwtStrategy],
-  imports: [
-    JwtModule.register({
-      secret: process.env.JWT_SECRECT,
-      signOptions: { expiresIn: '7d' },
-    }),
+  providers: [
+    AuthResolver,
+    AuthService,
+    UserService,
+    JwtService,
+    TokenService,
+    {
+      provide: HashingService,
+      useClass: BcryptService,
+    },
   ],
-  exports: [AuthService, JwtStrategy, JwtModule],
+  imports: [],
+  exports: [],
 })
 export class AuthModule {}

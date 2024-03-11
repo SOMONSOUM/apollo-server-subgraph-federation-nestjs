@@ -6,8 +6,14 @@
 type User {
   id: Int!
   email: String!
+  password: String!
   first_name: String
   last_name: String
+}
+
+"""Login response"""
+type LoginResponse {
+  token: String!
 }
 
 type Query {
@@ -21,6 +27,7 @@ type Query {
 type Mutation {
   createTest(input: CreateTestInput!): String!
   updateTest(input: UpdateTestInput!): Boolean!
+  login(input: LoginInput!): LoginResponse!
 }
 
 input CreateTestInput {
@@ -29,4 +36,10 @@ input CreateTestInput {
 
 input UpdateTestInput {
   id: Int!
+}
+
+"""Login input"""
+input LoginInput {
+  email: String!
+  password: String!
 }

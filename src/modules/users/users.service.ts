@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Knex } from 'knex';
 import { InjectConnection } from 'nest-knexjs';
-import { DATABASE_CONNECTIONS } from 'src/shared/enum';
+import { DATABASE_CONNECTIONS } from 'src/common/enum';
 import { User } from './schema/user.schema';
 
 @Injectable()
@@ -21,13 +21,11 @@ export class UserService {
     return await this.sasKnex.select('*').from('imports');
   }
 
-  async findByEamil(args: { email: string }): Promise<User> {
-    const { email } = args;
-    return this.aasKnex.table('users').where('email', email).first();
+  async findByEmail(email: string): Promise<User | undefined> {
+    return await this.aasKnex.table('users').where({ email }).first();
   }
 
-  async findById(args: { id: number }): Promise<User> {
-    const { id } = args;
-    return this.aasKnex.table('users').where('id', id).first();
+  async findById(id: number): Promise<User> {
+    return await this.aasKnex.table('users').where('id', id).first();
   }
 }
