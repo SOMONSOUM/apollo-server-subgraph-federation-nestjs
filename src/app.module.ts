@@ -7,7 +7,7 @@ import { AppResolver } from './app.resolver';
 import { ApolloModule } from './apollo/apollo.module';
 
 @Module({
-  imports: [AppModule, ApolloModule, UserModule, TestModule],
+  imports: [ApolloModule, UserModule, TestModule],
   controllers: [AppController],
   providers: [AppService, AppResolver],
 })

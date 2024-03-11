@@ -18,7 +18,9 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "generate-types": "ts-node ./src/generateTypes.ts"
+    "generate-types": "ts-node ./src/generateTypes.ts",
+    "migrate:sas": "knex migrate:latest --env developmentSAS",
+    "migrate:aas": "knex migrate:latest --env developmentAAS"
   },
   "dependencies": {
     "@apollo/federation": "^0.38.1",
@@ -79,5 +81,6 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "packageManager": "yarn@4.1.1"
 }

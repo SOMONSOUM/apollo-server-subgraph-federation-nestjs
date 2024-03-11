@@ -9,7 +9,7 @@ import { ApolloServerPluginInlineTrace } from '@apollo/server/plugin/inlineTrace
 import { join } from 'path';
 import { GraphQLFormattedError } from 'graphql';
 import { ConfigModule } from '@nestjs/config';
-import { KnexConfigModule } from 'src/config/knex.module';
+import { KnexConfigModule } from 'src/shared/knex.module';
 
 @Module({
   imports: [

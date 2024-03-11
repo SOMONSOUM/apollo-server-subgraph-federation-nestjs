@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Knex } from 'knex';
 import { InjectConnection } from 'nest-knexjs';
-import { DATABASE_CONNECTIONS } from 'src/enum';
+import { DATABASE_CONNECTIONS } from 'src/shared/enum';
+import { User } from './schema/user.schema';
 
 @Injectable()
 export class UserService {
@@ -12,7 +13,7 @@ export class UserService {
     private readonly sasKnex: Knex,
   ) {}
 
-  async getAllUsers() {
+  async getAllUsers(): Promise<User[]> {
     return await this.aasKnex.select('*').from('users');
   }
 
