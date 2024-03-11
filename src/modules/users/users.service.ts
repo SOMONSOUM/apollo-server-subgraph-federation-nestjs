@@ -20,4 +20,14 @@ export class UserService {
   async getAllImports() {
     return await this.sasKnex.select('*').from('imports');
   }
+
+  async findByEamil(args: { email: string }): Promise<User> {
+    const { email } = args;
+    return this.aasKnex.table('users').where('email', email).first();
+  }
+
+  async findById(args: { id: number }): Promise<User> {
+    const { id } = args;
+    return this.aasKnex.table('users').where('id', id).first();
+  }
 }
