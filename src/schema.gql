@@ -28,6 +28,7 @@ type Mutation {
   createTest(input: CreateTestInput!): String!
   updateTest(input: UpdateTestInput!): Boolean!
   login(input: LoginInput!): LoginResponse!
+  signup(input: CreateUserInputDTO!): Boolean!
 }
 
 input CreateTestInput {
@@ -42,4 +43,12 @@ input UpdateTestInput {
 input LoginInput {
   email: String!
   password: String!
+}
+
+"""user dto input"""
+input CreateUserInputDTO {
+  email: String!
+  password: String!
+  first_name: String!
+  last_name: String!
 }

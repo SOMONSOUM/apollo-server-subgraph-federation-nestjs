@@ -3,6 +3,7 @@ import { LoginInput } from './dto/login.input';
 import { LoginResponse } from './schema/login.schema';
 import { AuthService } from './auth.service';
 import { HttpCode, HttpStatus } from '@nestjs/common';
+import { CreateUserInputDTO } from '../users/dto/user-input.dto';
 
 @Resolver()
 export class AuthResolver {
@@ -17,5 +18,12 @@ export class AuthResolver {
     });
 
     return { token };
+  }
+
+  @Mutation(() => Boolean)
+  @HttpCode(HttpStatus.CREATED)
+  async signup(@Args('input') input: CreateUserInputDTO): Promise<boolean> {
+    const isUserCreated = await this.authService.signup(input);
+    return isUserCreated;
   }
 }
